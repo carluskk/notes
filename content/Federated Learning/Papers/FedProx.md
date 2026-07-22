@@ -18,7 +18,11 @@ Paper: _Federated Optimization in Heterogeneous Networks_, Li et al., 2020
 In FedAvg, client k minimizes its local objective $\min_w F_k(w)$.
 
 FedProx augments this objective with a proximal regularization term:
-$$\min_w F_k(w) + \frac{\mu}{2}\|w-w_t\|^2,$$
+
+$$
+\min_w F_k(w) + \frac{\mu}{2}\|w-w_t\|^2
+$$
+
 where
 
 - $F_k(w)$ is the local loss function of client $k$;
@@ -27,7 +31,12 @@ where
 
 The additional term penalizes updates that move too far away from the current global model → **Soft Constraint**. Large deviations from the global model become increasingly expensive. As a result, ==local updates remain better aligned with the global optimization process while still capturing client-specific information==.
 
-The gradient of the modified objective becomes:$$\nabla F_k(w) + \mu(w-w_t)$$
+The gradient of the modified objective becomes:
+
+$$
+\nabla F_k(w) + \mu(w-w_t)
+$$
+
 The hyperparameter $\mu$ determines the strength of the proximal regularization:
 
 - $\mu = 0$: FedProx reduces exactly to FedAvg.

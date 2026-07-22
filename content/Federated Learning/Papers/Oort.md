@@ -73,9 +73,7 @@ where $B_i$ is the local dataset of client $i$. Clients with **more data and hig
 <u>Balance Statistical and System Efficiency</u>
 
 Oort combines a client's **statistical utility** with its **system efficiency** to avoid selecting statistically valuable clients that significantly slow down training:
-$$
-\text{Util}(i)=U(i)\left(\frac{T}{t_i}\right)^{\mathbb{1}(T<t_i)\alpha}
-$$
+$$\text{Util}(i)=U(i)\left(\frac{T}{t_i}\right)^{\mathbb{1}(T<t_i)\alpha}$$
 where $T$ is the desired round duration, $t_i$ is the training time of client $i$, and $\alpha$ controls the penalty applied to slow clients. Clients with $t_i \leq T$ receive no penalty, while slower clients are penalized unless their statistical utility is high enough to compensate for their execution time.
 
 <u>Participant Selection: Exploration and Exploitation</u>
@@ -88,10 +86,11 @@ Since a client's utility is only known after participation and may become outdat
 - **Robustness:** Oort limits repeated selection of the same clients and clips extreme utility values, reducing the influence of corrupted or noisy clients with abnormally high training loss.
 
 Oort can also incorporate a developer-defined fairness criterion into client utility:
+
 $$
-(1-f)\text{Util}(i)+f\cdot\text{fairness}(i),
-\qquad f\in[0,1]
+(1-f)\text{Util}(i)+f\cdot\text{fairness}(i),\qquad f\in[0,1]
 $$
+
 where $f$ controls the trade-off between **time-to-accuracy efficiency** and **fairness**.
 ## Testing Selector
 
@@ -104,11 +103,25 @@ Chooses clients that make the evaluation set representative while trying to fini
 Oort optimizes **time-to-accuracy** by jointly considering **statistical efficiency** (number of rounds required to reach the target accuracy) and **system efficiency** (duration of each training round). Selecting only statistically useful clients may introduce slow devices, while selecting only fast clients may provide redundant data and require more rounds.
 
 If client data characteristics are unknown, Oort defines the deviation between the selected test data and the true global distribution using the $L_1$-distance:
-$$\|\bar X-E[\bar X]\|_1$$
-The developer specifies a maximum acceptable deviation $\epsilon$ and a confidence level $\delta$. Then Oort estimates the **minimum number of clients** m needed such that: $$\Pr \left[ \|\bar X-E[\bar X]\|_1\leq\epsilon \right] \geq\delta$$
+
+$$
+\|\bar X-E[\bar X]\|_1
+$$
+
+The developer specifies a maximum acceptable deviation $\epsilon$ and a confidence level $\delta$. Then Oort estimates the **minimum number of clients** m needed such that:
+
+$$
+\Pr\left[\|\bar X-E[\bar X]\|_1\leq\epsilon\right]\geq\delta
+$$
+
 > “How many random clients do I need so that the resulting test data is within $\epsilon$ of the global distribution with, say, 95% confidence?”
 
-If, on the other hand, the client data characteristics are known, Oort can explicitly choose clients whose combined data satisfy this target distribution and minimizes the maximum client completion time: $$\min \max_{j}\left(\sum_{i} c_{i} n_{i}^{j}s_{j}+\frac{d_{j}}{b_{j}}\right) = \min\text{(Time of the last client to finish)}$$
+If, on the other hand, the client data characteristics are known, Oort can explicitly choose clients whose combined data satisfy this target distribution and minimizes the maximum client completion time:
+
+$$
+\min \max_{j}\left(\sum_{i} c_{i} n_{i}^{j}s_{j}+\frac{d_{j}}{b_{j}}\right) = \min\text{(Time of the last client to finish)}
+$$
+
 where:
 - $c_{i}$ is the computation cost of processing one sample category $i$.
 - $n_{i}^{j}$ is the number of samples of category $i$ contributed by client $j$.

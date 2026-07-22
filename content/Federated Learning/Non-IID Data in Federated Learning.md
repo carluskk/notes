@@ -8,15 +8,21 @@ When non-IID data in federated learning is referenced, this typically refers to 
 
 From the optimization perspective, the global training objective is the average loss over all examples:
 
-$$f(w) = \frac{1}{n}\sum_{i=1}^{n} f_i(w).$$
+$$
+f(w) = \frac{1}{n}\sum_{i=1}^{n} f_i(w).
+$$
 
 If the data is partitioned across $K$ clients, client $k$ has a local objective
 
-$$F_k(w) = \frac{1}{n_k}\sum_{i \in P_k} f_i(w),$$
+$$
+F_k(w) = \frac{1}{n_k}\sum_{i \in P_k} f_i(w),
+$$
 
 so the global objective can be rewritten as
 
-$$f(w) = \sum_{k=1}^{K} \frac{n_k}{n} F_k(w).$$
+$$
+f(w) = \sum_{k=1}^{K} \frac{n_k}{n} F_k(w).
+$$
 
 In the IID case, each client is effectively a random sample of the whole population, so on average its local objective matches the global one: $\mathbb{E}[F_k(w)] = f(w)$. In federated learning this usually does not hold, so a client may optimize a local objective that differs significantly from the population objective. This is the optimization view of the non-IID setting.
 
@@ -24,7 +30,13 @@ In the IID case, each client is effectively a random sample of the whole populat
 
 In federated learning, clients often have data generated from different distributions. Instead of simply stating that $P_i(x,y) \neq P_j(x,y)$ for two clients $i$ and $j$, we can decompose the joint distribution to understand *how* the data differs.
 
-Using probability theory: $$P(x,y) = P(y|x)P(x) = P(x|y)P(y)$$This decomposition allows us to identify different sources of heterogeneity:
+Using probability theory:
+
+$$
+P(x,y) = P(y|x)P(x) = P(x|y)P(y)
+$$
+
+This decomposition allows us to identify different sources of heterogeneity:
 - **Feature Distribution Skew (Covariate Shift)**: $P_i(x) \neq P_j(x)$ while $P_i(y|x) = P_j(y|x)$. ==The inputs differ across clients, but the relationship between inputs and labels remains the same.==
   **Example**: Different users have different handwriting styles (slant, stroke width), but a given handwritten digit still corresponds to the same label.
 - **Label Distribution Skew** $(P(y))$: The frequency of labels differs across clients, i.e., $P_i(y) \neq P_j(y)$, while $P_i(x|y) = P_j(x|y)$. ==The frequency of labels differs across clients, but each label looks the same everywhere.==

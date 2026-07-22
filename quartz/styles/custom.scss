@@ -1,3 +1,133 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+body[data-slug="index"] .page {
+  max-width: min(760px, calc(100vw - 2rem));
+}
+
+body[data-slug="index"] .page > #quartz-body {
+  display: block;
+  padding: 0;
+}
+
+body[data-slug="index"] .page > #quartz-body .sidebar.left,
+body[data-slug="index"] .page > #quartz-body .sidebar.right {
+  display: none;
+}
+
+body[data-slug="index"] .page > #quartz-body .page-header {
+  margin: 5rem 0 2rem;
+}
+
+body[data-slug="index"] .page > #quartz-body .center,
+body[data-slug="index"] .page > #quartz-body footer {
+  min-width: 0;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.page-title {
+  font-size: 0.95rem !important;
+  line-height: 1.25;
+}
+
+.page-title a {
+  font-size: 0;
+}
+
+.page-title a::before {
+  content: "Return to Homepage";
+  font-size: 0.95rem;
+}
+
+.breadcrumb-container .breadcrumb-element:first-child {
+  display: none;
+}
+
+.page > #quartz-body .sidebar.right {
+  gap: 0;
+}
+
+.page > #quartz-body .sidebar.right .toc {
+  width: 100%;
+  max-height: calc(100vh - #{$topSpacing} - 2rem);
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--background-modifier-border);
+}
+
+.page > #quartz-body .sidebar.right button.toc-header {
+  gap: 0.45rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.page > #quartz-body .sidebar.right button.toc-header h3 {
+  font-size: 0;
+}
+
+.page > #quartz-body .sidebar.right button.toc-header h3::before {
+  content: "Contents";
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.page > #quartz-body .sidebar.right button.toc-header .fold {
+  display: none;
+}
+
+.page > #quartz-body .sidebar.right ul.toc-content.overflow {
+  margin: 0;
+  max-height: calc(100vh - #{$topSpacing} - 5rem);
+  padding: 0;
+}
+
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li {
+  margin: 0 0 0.6rem !important;
+  padding-left: 0 !important;
+  line-height: 1.25 !important;
+}
+
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-1 {
+  padding-left: 1rem !important;
+}
+
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-2,
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-3,
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-4,
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-5,
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-6 {
+  padding-left: 1.75rem !important;
+}
+
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li > a {
+  display: block;
+  color: var(--text-muted) !important;
+  font-size: 0.86rem !important;
+  font-weight: 500 !important;
+  opacity: 0.72 !important;
+  line-height: 1.25 !important;
+}
+
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-0 > a {
+  color: var(--text-normal) !important;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  opacity: 0.9 !important;
+}
+
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-1 > a,
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-2 > a,
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-3 > a,
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-4 > a,
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-5 > a,
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li.depth-6 > a {
+  font-size: 0.82rem !important;
+  font-weight: 500 !important;
+}
+
+.page > #quartz-body .sidebar.right ul.toc-content.overflow > li > a.in-view {
+  color: var(--link-color) !important;
+  opacity: 1 !important;
+}

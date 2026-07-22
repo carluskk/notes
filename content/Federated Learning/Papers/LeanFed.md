@@ -11,9 +11,21 @@ Paper: _Learn More by Using Less: Distributed Learning with Energy-Constrained D
 
 ## Methods
 
-For each device $e$, the maximum number of full-data communication rounds it can support is estimated as: $$R_e = \frac{B_e}{\bar{b}_e L_e}$$where $B_e$ is the device's energy budget, $\bar{b}_e$ is its estimated training energy cost, and $L_e$ is the number of local epochs.
+For each device $e$, the maximum number of full-data communication rounds it can support is estimated as:
 
-If the device cannot naturally sustain the required $R$ communication rounds ($R_e \leq R$), LeanFed computes a local data fraction $\eta_e \in [0,1]$: $$\eta_e(\lambda)=R\frac{\bar{b}_eL_e}{\lambda B_e}$$where $\lambda$ is a server-defined scaling factor accounting for the expected device participation. The device trains only on the corresponding percentage of its local dataset, reducing computation and energy consumption.
+$$
+R_e = \frac{B_e}{\bar{b}_e L_e}
+$$
+
+where $B_e$ is the device's energy budget, $\bar{b}_e$ is its estimated training energy cost, and $L_e$ is the number of local epochs.
+
+If the device cannot naturally sustain the required $R$ communication rounds ($R_e \leq R$), LeanFed computes a local data fraction $\eta_e \in [0,1]$:
+
+$$
+\eta_e(\lambda)=R\frac{\bar{b}_eL_e}{\lambda B_e}
+$$
+
+where $\lambda$ is a server-defined scaling factor accounting for the expected device participation. The device trains only on the corresponding percentage of its local dataset, reducing computation and energy consumption.
 
 > [!DANGER]
 > **Possible inconsistency in Eq. (4).** Since $B_e$ appears in the denominator and $\eta_e$ is recomputed at each round, a decrease in residual battery leads to an increase in $\eta_e$. This seems opposite to the stated goal of reducing local computation for energy-constrained devices and may indicate a typo or an unclear interpretation of the equation.
