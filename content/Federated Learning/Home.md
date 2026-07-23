@@ -19,12 +19,12 @@ From “*Kairuz et al., Advances and Open Problems in Federated Learning*”:
 - [[Non-IID Data in Federated Learning]]
 - [[Communication and Compression]]
 - [[Ensuring Fairness and Addressing Sources of Bias]]
-- [ ] [[Addressing System Challenges]]
+- Addressing System Challenges **TODO**
 
 ### Algorithms and Frameworks
 
 - [[FedAvg]]
-- [ ] FedAvgM
+- FedAvgM **TODO**
 - [[FedOpt]]
 - [[FedProx]]
 - [[Oort]]
