@@ -13,7 +13,7 @@ Paper: _Federated Optimization in Heterogeneous Networks_, Li et al., 2020
 
 ## Methods
 
-==FedProx modifies **only the local optimization problem** solved by each client.==
+==FedProx modifies only the local optimization problem solved by each client.==
 
 In FedAvg, client k minimizes its local objective $\min_w F_k(w)$.
 

@@ -73,7 +73,9 @@ where $B_i$ is the local dataset of client $i$. Clients with **more data and hig
 <u>Balance Statistical and System Efficiency</u>
 
 Oort combines a client's **statistical utility** with its **system efficiency** to avoid selecting statistically valuable clients that significantly slow down training:
-$$\text{Util}(i)=U(i)\left(\frac{T}{t_i}\right)^{\mathbb{1}(T<t_i)\alpha}$$
+$$
+\text{Util}(i)=U(i)\left(\frac{T}{t_i}\right)^{\mathbb{1}(T<t_i)\alpha}
+$$
 where $T$ is the desired round duration, $t_i$ is the training time of client $i$, and $\alpha$ controls the penalty applied to slow clients. Clients with $t_i \leq T$ receive no penalty, while slower clients are penalized unless their statistical utility is high enough to compensate for their execution time.
 
 <u>Participant Selection: Exploration and Exploitation</u>
